@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Course name:</strong>
+  <%= @event.course_name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date %>
+</p>
+
+<h2>Already invited persons</h2>
+<% @registered_attendees.each do |user| %>
+  <p><%= link_to user.name, player_path(user) %></p>
+<% end %>
+
+<% if flash[:notice] %>
+  		<div class="notification is-primary global-notification">
+  			<p class="notice"><%= notice %></p>
+  		</div>
+  	<% end %>
+
+
+<h3>invite And uninvite users by clicking on player name below</h3>
+<% @players.each do |player| %>
+  <%# if @registered_attendees.exclude?(player) %>
+  <p><%= link_to player.name, player_events_path({event_id: @event.id, player_id: player.id}), method: :post %></p>
+ <%# end %>
+<% end %>
+<div style="margin-top:50px;">
+<p>Tournament controls</p>
+<p><%= link_to 'Edit Event', edit_event_path(@event) %></p>
+<p><%= link_to 'Back', events_path %></p>
+<p><td><%= link_to 'Remove Event', @event, method: :delete, data: { confirm: 'Are you sure?' } %></td></p>
+<p><%= link_to 'Home', root_path %></p>
+</div>
