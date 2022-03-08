@@ -5,7 +5,7 @@
 <%#= select("property", "type_id", @events.collect {|p| [ p.name, p.id] }, {prompt: 'Select date'}) %>
 <%= form_tag events_path, :method => 'get' do %>
 <%= collection_select :event, :date, Event.all, :date, :date, prompt: true %>
-<%= submit_tag "look" %>
+<%= submit_tag "filter" %>
 <% end %>
 <table>
   <thead>
